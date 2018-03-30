@@ -1,23 +1,37 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { AppRegistry, Text, TextInput, View, Button } from 'react-native';
 
-export default class App extends React.Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <View style={{padding: 30, flex: 1, backgroundColor: '#f6f6f6'}}>
+        <View style={{flex: 1}} />
+        <View style={{flex: 1}}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Usuario"
+            onChangeText={(text) => {}}
+          />
+
+          <TextInput
+            secureTextEntry={true}
+            style={{height: 40}}
+            placeholder="Contraseña"
+            onChangeText={(text) => {}}
+          />
+
+          <Button
+            onPress={() => {}}
+            title="Iniciar Sesión"
+            color="#598463"
+          />
+        </View>
+        <View style={{flex: 1}} />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
