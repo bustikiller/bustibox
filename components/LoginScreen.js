@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Login from "../services/Login.js";
 import NodeLoader from "../services/NodeLoader.js";
+import Database from "../services/Database.js";
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -52,8 +53,10 @@ export default class LoginScreen extends React.Component {
                 this.state.username,
                 this.state.password,
                 () => {
-                  navigate("Home");
-                  new NodeLoader().load();
+                  new Database().getCheckpoint((checkpoint) => {
+                    navigate("Home");
+                    new NodeLoader(checkpoint).load();
+                  });
                 }
               );
             }}

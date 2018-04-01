@@ -1,24 +1,43 @@
 import { ToastAndroid, AsyncStorage } from "react-native";
 import DrupalParser from "../services/DrupalParser.js";
+import Database from "../services/Database.js";
 
 export default class NodeLoader {
+  constructor(checkpoint) {
+    this.checkpoint = checkpoint || 0;
+    this.partialCheckpoint = this.checkpoint;
+  }
+
   clearAll(callback) {
     AsyncStorage.clear(callback);
   }
 
   load(page = 0) {
-    fetch("http://kimball.com.es/api/node?page=" + page, {
-      method: "GET",
-      headers: {}
-    })
+    fetch(
+      "http://kimball.com.es/api/views/last_updates?display_id=updates&page=" +
+        page,
+      {
+        method: "GET",
+        headers: {}
+      }
+    )
       .then(response => response.json())
       .then(data => {
         console.log("Loaded " + data.length + " nodes");
         data.forEach(node => {
-          this.loadSingleNode(node.nid);
+          let newCheckpoint = Date.parse(node.node_changed);
+
+          if (newCheckpoint > this.checkpoint) {
+            this.loadSingleNode(node.nid);
+            this.partialCheckpoint = Math.max(this.partialCheckpoint, newCheckpoint);
+          }
         });
-        if (data.length === 20) {
+
+        if (data.length === 50 && this.partialCheckpoint > this.checkpoint) {
           this.load(page + 1);
+        } else {
+          this.checkpoint = this.partialCheckpoint;
+          new Database().updateCheckpoint(this.checkpoint);
         }
       })
       .catch(error => {
