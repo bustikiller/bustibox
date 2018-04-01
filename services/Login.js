@@ -1,4 +1,5 @@
 import {ToastAndroid} from 'react-native';
+import NodeLoader from '../services/NodeLoader.js'
 
 export default class Login {
 
@@ -12,7 +13,26 @@ export default class Login {
     }
 
     logout(callback) {
-        callback();
+        new NodeLoader().clearAll(() => {
+            this.getToken((token) => {
+                this.performLogoutRequest(token, callback);
+            });
+        });
+    }
+
+    performLogoutRequest(token, callback) {
+        fetch('http://kimball.com.es/api/user/logout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': token
+          },
+          body: JSON.stringify({})
+        })
+        .then(callback)
+        .catch((error) => {
+          ToastAndroid.show("Error cerrando sesión", ToastAndroid.SHORT);
+        });
     }
 
     performLoginRequest(username, password, token, callback){

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, TextInput, View, Button} from 'react-native';
 import Login from '../services/Login.js'
+import NodeLoader from '../services/NodeLoader.js'
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -38,6 +39,7 @@ export default class LoginScreen extends React.Component {
               onPress={() => {
                   new Login().login(this.state.username, this.state.password, () => {
                     navigate('Home');
+                    new NodeLoader().load();
                   });
               }}
               title="Iniciar Sesión"
