@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, Button } from "react-native";
+import { Text, View, ScrollView, Button } from "react-native";
 import Login from "../services/Login.js";
 import Database from "../services/Database.js";
 import Child from "../components/Child.js";
@@ -22,7 +22,7 @@ export default class ChildrenScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={{ padding: 30, flex: 1, backgroundColor: "#f6f6f6" }}>
+      <ScrollView style={{ padding: 30, flex: 1, backgroundColor: "#f6f6f6" }}>
         <Text>Helloworld there are {this.state.children.length} nodes</Text>
         <View>
           {this.state.children.map((node, i) => {
@@ -38,7 +38,7 @@ export default class ChildrenScreen extends React.Component {
             );
           })}
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
