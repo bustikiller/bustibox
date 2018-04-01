@@ -32,7 +32,6 @@ export default class ChildrenScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView style={{ padding: 30, flex: 1, backgroundColor: "#f6f6f6" }}>
-        <Text>Helloworld there are {this.state.children.length} nodes</Text>
         <View>
           {this.state.children.map((node, i) => {
             return (
