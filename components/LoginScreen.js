@@ -53,7 +53,7 @@ export default class LoginScreen extends React.Component {
                 this.state.username,
                 this.state.password,
                 () => {
-                  new Database().getCheckpoint((checkpoint) => {
+                  new Database().getCheckpoint(checkpoint => {
                     navigate("Home");
                     new NodeLoader(checkpoint).load();
                   });

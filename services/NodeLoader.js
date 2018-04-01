@@ -29,7 +29,10 @@ export default class NodeLoader {
 
           if (newCheckpoint > this.checkpoint) {
             this.loadSingleNode(node.nid);
-            this.partialCheckpoint = Math.max(this.partialCheckpoint, newCheckpoint);
+            this.partialCheckpoint = Math.max(
+              this.partialCheckpoint,
+              newCheckpoint
+            );
           }
         });
 
