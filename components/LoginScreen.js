@@ -33,7 +33,7 @@ export default class LoginScreen extends React.Component {
           <TextInput
             style={{ height: 40 }}
             placeholder="Usuario"
-            onChangeText={text => {
+            onChangeText={(text) => {
               this.setState({ username: text });
             }}
           />
@@ -42,7 +42,7 @@ export default class LoginScreen extends React.Component {
             secureTextEntry={true}
             style={{ height: 40 }}
             placeholder="Contraseña"
-            onChangeText={text => {
+            onChangeText={(text) => {
               this.setState({ password: text });
             }}
           />

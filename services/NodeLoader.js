@@ -21,15 +21,18 @@ export default class NodeLoader {
         headers: {}
       }
     )
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log("Loaded " + data.length + " nodes");
-        data.forEach(node => {
+        data.forEach((node) => {
           let newCheckpoint = Date.parse(node.node_changed);
 
           if (newCheckpoint > this.checkpoint) {
             this.loadSingleNode(node.nid);
-            this.partialCheckpoint = Math.max(this.partialCheckpoint, newCheckpoint);
+            this.partialCheckpoint = Math.max(
+              this.partialCheckpoint,
+              newCheckpoint
+            );
           }
         });
 
@@ -40,7 +43,7 @@ export default class NodeLoader {
           new Database().updateCheckpoint(this.checkpoint);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         ToastAndroid.show("Error recibiendo nodos", ToastAndroid.SHORT);
         console.log(error.message);
       });
@@ -51,12 +54,12 @@ export default class NodeLoader {
       method: "GET",
       headers: {}
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         let key = "node_" + data.type + "_" + nid;
         let value = JSON.stringify(new DrupalParser(data).simplify());
 
-        AsyncStorage.setItem(key, value, error => {
+        AsyncStorage.setItem(key, value, (error) => {
           if (error !== null) {
             console.log("Error storing data of node " + nid + ": " + error);
           }
