@@ -16,15 +16,22 @@ export default class ChildrenScreen extends React.Component {
     };
     new Database().fetchNodes("educando", nodes => {
       let sortedNodes = nodes.sort((a, b) => {
-        if(a.unidad > b.unidad) {
+        if (a.unidad > b.unidad) {
           return 1;
         }
-        if(a.unidad < b.unidad){
+        if (a.unidad < b.unidad) {
           return -1;
         }
         return 0;
       });
-      this.setState({ children: sortedNodes });
+      let filteredNodes = sortedNodes.filter(node => {
+        return (
+          node.lista_de_espera === "0" &&
+          node.educandos_bajas_pendientes === "0" &&
+          node.educandos_altas_pendientes === "0"
+        );
+      });
+      this.setState({ children: filteredNodes });
     });
   }
 
