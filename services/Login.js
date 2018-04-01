@@ -6,7 +6,6 @@ export default class Login {
     login(username, password, callback){
         this.getToken((token) => {
             this.performLoginRequest(username, password, token, (sessionInfo) => {
-                console.log(sessionInfo);
                 callback();
             })
         });
@@ -51,13 +50,11 @@ export default class Login {
             if (response.status === 200 || response.status === 406 ) {
                 return response;
             } else {
-                console.log('Response status = ' + response.status);
                 throw Error(response.statusText);
             }
         })
         .then(response => response.json())
         .then((data) => {
-            console.log("data = " + data);
             callback(data);
         })
         .catch((error) => {
