@@ -3,14 +3,14 @@ import DrupalParser from "../services/DrupalParser.js";
 
 export default class Database {
 	constructor() {
-		this.checkpoint_key = "backend_fetch_checkpoint";
+		this.checkpointKey = "backend_fetch_checkpoint";
 	}
 
 	updateCheckpoint(checkpoint) {
 		AsyncStorage.setItem(
-			this.checkpoint_key,
+			this.checkpointKey,
 			checkpoint.toString(),
-			error => {
+			(error) => {
 				if (error !== null) {
 					console.log("Error storing checkpoint: " + error);
 				}
@@ -19,7 +19,7 @@ export default class Database {
 	}
 
 	getCheckpoint(callback) {
-		AsyncStorage.getItem(this.checkpoint_key, (error, value) => {
+		AsyncStorage.getItem(this.checkpointKey, (error, value) => {
 			callback(value);
 		});
 	}
@@ -32,7 +32,7 @@ export default class Database {
 
 	fetchNodes(type, callback) {
 		AsyncStorage.getAllKeys((error, keys) => {
-			const filteredKeys = keys.filter(key => {
+			const filteredKeys = keys.filter((key) => {
 				return key.includes(type);
 			});
 			AsyncStorage.multiGet(filteredKeys, (error, stores) => {

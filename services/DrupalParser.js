@@ -7,11 +7,11 @@ export default class DrupalParser {
 		let result = {};
 
 		let relevantFields = Object.keys(this.rawData)
-			.filter(key => {
+			.filter((key) => {
 				return key.startsWith("field_");
 			})
 			.concat("nid", "title");
-		relevantFields.forEach(fieldName => {
+		relevantFields.forEach((fieldName) => {
 			value = this.get(fieldName);
 			if (value !== null) {
 				result[fieldName.replace("field_", "")] = value;
