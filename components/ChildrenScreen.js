@@ -15,7 +15,16 @@ export default class ChildrenScreen extends React.Component {
       children: []
     };
     new Database().fetchNodes("educando", nodes => {
-      this.setState({ children: nodes });
+      let sortedNodes = nodes.sort((a, b) => {
+        if(a.unidad > b.unidad) {
+          return 1;
+        }
+        if(a.unidad < b.unidad){
+          return -1;
+        }
+        return 0;
+      });
+      this.setState({ children: sortedNodes });
     });
   }
 
