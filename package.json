@@ -21,7 +21,7 @@
   "dependencies": {
     "expo": "^26.0.0",
     "react": "16.4.0-alpha.7926752",
-    "react-native": "0.55.3",
+    "react-native": "0.55.4",
     "react-navigation": "^1.5.12"
   }
 }
