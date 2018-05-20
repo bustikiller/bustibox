@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, Button } from "react-native";
-import AccountingEntry from "../components/AccountingEntry.js"
+import AccountingEntry from "../components/AccountingEntry.js";
 
 export default class AccountingEntryScreen extends React.Component {
   static navigationOptions = {
@@ -11,7 +11,7 @@ export default class AccountingEntryScreen extends React.Component {
     super(props);
     this.state = {
       entry: this.props.navigation.state.params.entry
-    }
+    };
   }
 
   render() {

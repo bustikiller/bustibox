@@ -10,13 +10,13 @@ export default class AccountingEntry extends React.Component {
         style={{
           padding: 5,
           marginVertical: 5,
-          backgroundColor: '#cccccc'
+          backgroundColor: "#cccccc"
         }}
       >
         <Button
           title={this.getText()}
           onPress={() => {
-            navigate("AccountingEntry", { entry: this.props.entry })
+            navigate("AccountingEntry", { entry: this.props.entry });
           }}
         />
       </View>

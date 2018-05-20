@@ -9,7 +9,7 @@ export default class AccountingYearTree {
 	}
 
 	build(callback) {
-		new Database().fetchNodes("partida_contable", nodes => {
+		new Database().fetchNodes("partida_contable", (nodes) => {
 			this.initAccountingEntriesMap(nodes);
 			this.loadAccountingEntries(nodes);
 			this.loadAccountingSeats(callback);
@@ -17,19 +17,17 @@ export default class AccountingYearTree {
 	}
 
 	initAccountingEntriesMap(nodes){
-		nodes.forEach(node => {
+		nodes.forEach((node) => {
 			this.entriesMap[node.nid] = {node: node, children: [], leaves: []};
 		});
 	}
 
 	loadAccountingEntries(nodes){
-		nodes.forEach(node => {
-			parentNid = node.partida_padre;
+		nodes.forEach((node) => {
+			const parentNid = node.partida_padre;
 			if(parentNid){
-				if(!this.entriesMap[parentNid]){
-					console.log("ERROR: Parent node with id "+ parentNid + " was not found");
-				} else {
-					this.entriesMap[parentNid].children.push(this.entriesMap[node.nid])
+				if(this.entriesMap[parentNid]){
+					this.entriesMap[parentNid].children.push(this.entriesMap[node.nid]);
 				}
 			}
 		});
@@ -45,10 +43,8 @@ export default class AccountingYearTree {
 		new Database().fetchNodes("asiento_contable", nodes => {
 			nodes.forEach(node => {
 				parentNid = node.partida_contable;
-				if(!this.entriesMap[parentNid]){
-					console.log("ERROR: Parent node with id "+ parentNid + " was not found");
-				} else {
-					this.entriesMap[parentNid].leaves.push(node)
+				if(this.entriesMap[parentNid]){
+					this.entriesMap[parentNid].leaves.push(node);
 				}
 			});
 			callback();
