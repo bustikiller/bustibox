@@ -32,17 +32,17 @@ export default class AccountingYearTree {
 			}
 		});
 
-		let filteredEntries = Object.values(this.entriesMap).filter(entry => {
+		let filteredEntries = Object.values(this.entriesMap).filter((entry) => {
 			return (parseInt(entry.node.anio_contable) === this.year);
-		})
+		});
 
 		this.entries = filteredEntries;
 	}
 
 	loadAccountingSeats(callback){
-		new Database().fetchNodes("asiento_contable", nodes => {
+		new Database().fetchNodes("asiento_contable", (nodes) => {
 			nodes.forEach(node => {
-				parentNid = node.partida_contable;
+				const parentNid = node.partida_contable;
 				if(this.entriesMap[parentNid]){
 					this.entriesMap[parentNid].leaves.push(node);
 				}
