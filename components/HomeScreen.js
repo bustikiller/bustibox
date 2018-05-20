@@ -30,6 +30,13 @@ export default class HomeScreen extends React.Component {
         />
         <Button
           onPress={() => {
+            navigate("AccountingYear");
+          }}
+          title="Año contable"
+          color="#598463"
+        />
+        <Button
+          onPress={() => {
             new Database().getCheckpoint((checkpoint) => {
               new NodeLoader(checkpoint).load();
             });
