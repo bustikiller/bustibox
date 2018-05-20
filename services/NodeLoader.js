@@ -4,6 +4,7 @@ import Database from "../services/Database.js";
 
 export default class NodeLoader {
   constructor(checkpoint) {
+    console.log("Created NodeLoader with checkpoint " + checkpoint);
     this.checkpoint = checkpoint || 0;
     this.partialCheckpoint = this.checkpoint;
   }
