@@ -4,6 +4,7 @@ import { Text, View, Button } from "react-native";
 export default class AccountingEntry extends React.Component {
 
   render() {
+    const navigate = this.props.navigation;
     return (
       <View
         style={{
@@ -12,10 +13,17 @@ export default class AccountingEntry extends React.Component {
           backgroundColor: '#cccccc'
         }}
       >
-        <Text>
-          {this.props.node.title} {this.props.node.total}€
-        </Text>
+        <Button
+          title={this.getText()}
+          onPress={() => {
+            navigate("AccountingEntry", { entry: this.props.entry })
+          }}
+        />
       </View>
     );
+  }
+
+  getText() {
+    return (this.props.entry.node.title + " " + this.props.entry.node.total + "€");
   }
 }
