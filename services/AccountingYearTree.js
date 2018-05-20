@@ -9,7 +9,6 @@ export default class AccountingYearTree {
 	}
 
 	build(callback) {
-		console.log("Building AccountingYearTree for year " + this.year);
 		new Database().fetchNodes("partida_contable", nodes => {
 			this.initAccountingEntriesMap(nodes);
 			this.loadAccountingEntries(nodes);
@@ -20,10 +19,7 @@ export default class AccountingYearTree {
 	initAccountingEntriesMap(nodes){
 		nodes.forEach(node => {
 			this.entriesMap[node.nid] = {node: node, children: [], leaves: []};
-			console.log("Loaded accounting entry " + node.nid);
 		});
-
-		console.log("Finished loading accounting entries into memory");
 	}
 
 	loadAccountingEntries(nodes){
@@ -55,9 +51,6 @@ export default class AccountingYearTree {
 					this.entriesMap[parentNid].leaves.push(node)
 				}
 			});
-
-			console.log("entriesMap = " + JSON.stringify(this.entriesMap));
-
 			callback();
 		});
 	}
