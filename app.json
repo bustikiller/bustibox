@@ -1,5 +1,15 @@
 {
-  "expo": {
-    "sdkVersion": "26.0.0"
-  }
+    "expo": {
+        "name": "BustiBox",
+        "icon": "./images/bustibox.png",
+        "version": "1.0.0",
+        "slug": "bustibox",
+        "sdkVersion": "26.0.0",
+        "ios": {
+            "bundleIdentifier": "com.bustibox.bustibox"
+        },
+        "android": {
+            "package": "com.bustibox.bustibox"
+        }
+    }
 }
