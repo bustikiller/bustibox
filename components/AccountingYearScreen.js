@@ -34,11 +34,11 @@ export default class AccountingYearScreen extends React.Component {
     return (
       <ScrollView style={{ padding: 30, flex: 1, backgroundColor: "#f6f6f6" }}>
         <View>
-          {this.state.tree && this.state.tree.entries.map((node, i) => {
+          {this.state.tree && this.state.tree.entries.map((entry, i) => {
             return (
               <AccountingEntry
                 key={i}
-                node={node}
+                node={entry.node}
               />
             );
           })}
