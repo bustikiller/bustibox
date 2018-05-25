@@ -49,7 +49,7 @@ jobs:
           name: Generate Android APK
           branch: chore/automatic-expo-deployment
           command: |
-            npm install -g exp
+            npm install exp
             exp login -u $USERNAME -p $PASSWORD
             exp build:android
 
