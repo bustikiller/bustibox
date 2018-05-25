@@ -26,7 +26,7 @@ export default class Child extends React.Component {
     const colors = {};
     colors["1"] = "#CCF2FF";
     colors["2"] = "#ECFF8F";
-    colors["3"] = "#ECFF8F";
+    colors["3"] = "#82FF82";
     colors["4"] = "#FFDE88";
     colors["5"] = "#FFCCCC";
 
