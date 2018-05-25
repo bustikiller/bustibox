@@ -24,6 +24,6 @@ export default class AccountingSeat extends React.Component {
   }
 
   getText() {
-    return (this.props.seat.title);
+    return (this.props.seat.title + " " + this.props.seat.importe + "€");
   }
 }
