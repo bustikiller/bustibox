@@ -42,6 +42,6 @@ export default class DrupalParser {
 		}
 
 		let info = this.rawData[fieldName]["und"][0];
-		return info["value"] || info["tid"] || info["uri"];
+		return info["value"] || info["tid"] || info["uri"] || info["target_id"];
 	}
 }
