@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, Button } from "react-native";
 import AccountingSeat from "../components/AccountingSeat.js";
-import { basicScreen } from "../services/Styles"
+import { basicScreen } from "../services/Styles";
 
 export default class AccountingSeatScreen extends React.Component {
   static navigationOptions = {

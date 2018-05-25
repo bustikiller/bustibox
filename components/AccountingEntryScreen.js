@@ -3,7 +3,7 @@ import { Text, View, ScrollView, Button } from "react-native";
 import AccountingEntry from "../components/AccountingEntry.js";
 import AccountingSeat from "../components/AccountingSeat.js";
 
-import { header1, header2, basicScreen } from "../services/Styles"
+import { header1, header2, basicScreen } from "../services/Styles";
 
 export default class AccountingEntryScreen extends React.Component {
   static navigationOptions = {

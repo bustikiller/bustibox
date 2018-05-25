@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-import { accountingRowStyle, accountingRowTextStyle } from "../services/Styles"
+import { accountingRowStyle, accountingRowTextStyle } from "../services/Styles";
 
 export class AccountingRow extends React.Component {
 

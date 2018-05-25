@@ -1,4 +1,4 @@
-import { AccountingRow } from "./AccountingRow"
+import { AccountingRow } from "./AccountingRow";
 
 export default class AccountingEntry extends AccountingRow {
 
