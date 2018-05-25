@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, Button } from "react-native";
 import AccountingEntry from "../components/AccountingEntry.js";
+import AccountingSeat from "../components/AccountingSeat.js";
 
 export default class AccountingEntryScreen extends React.Component {
   static navigationOptions = {
@@ -31,6 +32,15 @@ export default class AccountingEntryScreen extends React.Component {
             );
           })}
           <Text>Asientos Contables</Text>
+          {this.state.entry.leaves.map((seat, i) => {
+            return (
+              <AccountingSeat
+                key={i}
+                seat={seat}
+                navigation={navigate}
+              />
+            );
+          })}
         </View>
       </ScrollView>
     );
