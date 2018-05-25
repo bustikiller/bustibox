@@ -41,7 +41,7 @@ export default class AccountingYearTree {
 
 	loadAccountingSeats(callback){
 		new Database().fetchNodes("asiento_contable", (nodes) => {
-			nodes.forEach(node => {
+			nodes.forEach((node) => {
 				const parentNid = node.partida_contable;
 				if(this.entriesMap[parentNid]){
 					this.entriesMap[parentNid].leaves.push(node);

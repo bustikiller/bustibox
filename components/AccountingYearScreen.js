@@ -22,7 +22,7 @@ export default class AccountingYearScreen extends React.Component {
     tree.build(() => {
       this.setState({
         year: 2018, 
-        tree: tree
+        tree
       });    
     });
   }
