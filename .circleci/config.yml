@@ -41,7 +41,7 @@ jobs:
       - store_test_results:
           path: test-results
 
-      - store_artifacts:
+      - run:
           name: Generate Android APK
           branch: chore/automatic-expo-deployment
           command: |
