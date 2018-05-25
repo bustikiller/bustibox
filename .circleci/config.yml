@@ -46,11 +46,16 @@ jobs:
           path: test-results
 
       - run:
-          name: Generate Android APK
+          name: Install Exp CLI
           branch: chore/automatic-expo-deployment
           command: |
             yarn global add exp
             export PATH="$PATH:$( yarn global bin )"
+
+      - run:
+          name: Generate Android APK
+          branch: chore/automatic-expo-deployment
+          command: |
             exp login -u $USERNAME -p $PASSWORD
             exp build:android
 
