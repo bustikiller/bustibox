@@ -42,7 +42,14 @@ jobs:
           path: test-results
 
       - store_artifacts:
-          path: test-results
+          name: Generate Android APK
+          branch: chore/automatic-expo-deployment
+          command: |
+            exp login -u $USERNAME -p $PASSWORD
+            exp build:android
+
+      - generate_apk:
+
 
 workflows:
   version: 2
