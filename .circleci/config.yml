@@ -49,7 +49,8 @@ jobs:
           name: Generate Android APK
           branch: chore/automatic-expo-deployment
           command: |
-            npm install exp
+            yarn global add exp
+            export PATH="$PATH:$( yarn global bin )"
             exp login -u $USERNAME -p $PASSWORD
             exp build:android
 
