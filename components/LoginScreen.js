@@ -5,7 +5,8 @@ import {
   TextInput,
   View,
   Button,
-  ToastAndroid
+  ToastAndroid, 
+  Image
 } from "react-native";
 import Login from "../services/Login.js";
 import NodeLoader from "../services/NodeLoader.js";
@@ -30,6 +31,12 @@ export default class LoginScreen extends React.Component {
       <View style={{ padding: 30, flex: 1, backgroundColor: "#f6f6f6" }}>
         <View style={{ flex: 1 }} />
         <View style={{ flex: 3 }}>
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Image
+              source={require('../images/bustibox.png')}
+              style={{width: 200, height: 200}}
+            />
+          </View>
           <TextInput
             style={{ height: 40 }}
             placeholder="Usuario"
