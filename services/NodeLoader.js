@@ -41,6 +41,7 @@ export default class NodeLoader {
         } else {
           this.checkpoint = this.partialCheckpoint;
           new Database().updateCheckpoint(this.checkpoint);
+          ToastAndroid.show("Datos sincronizados correctamente", ToastAndroid.SHORT);
         }
       })
       .catch((error) => {
