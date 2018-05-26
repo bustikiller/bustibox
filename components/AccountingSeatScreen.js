@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, Button } from "react-native";
 import AccountingSeat from "../components/AccountingSeat.js";
-import { basicScreen } from "../services/Styles";
+import Moment from "moment";
+import { basicScreen, header1, header2 } from "../services/Styles";
 
 export default class AccountingSeatScreen extends React.Component {
   static navigationOptions = {
@@ -20,7 +21,8 @@ export default class AccountingSeatScreen extends React.Component {
     return (
       <ScrollView style={ basicScreen() }>
         <View>
-          <Text>{this.state.seat.title}</Text>
+          <Text style={ header1() }>{this.state.seat.title} {this.state.seat.importe}€</Text>
+          <Text style={ header2() }>{Moment(this.state.seat.fecha).format("DD/MM/YYYY")}</Text>
         </View>
       </ScrollView>
     );
