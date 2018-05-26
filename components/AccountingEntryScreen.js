@@ -18,13 +18,24 @@ export default class AccountingEntryScreen extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <ScrollView style={ basicScreen() }>
         <View>
           <Text style={ header1() }>{this.state.entry.node.title} {this.state.entry.node.total}€</Text>
+          { this.renderAccountingEntries() }
+          { this.renderAccountingSeats() }
+        </View>
+      </ScrollView>
+    );
+  }
+
+  renderAccountingEntries() {
+    const { navigate } = this.props.navigation;
+    if(this.state.entry.children.length > 0) {
+      return(
+        <View>
           <Text style={ header2() }>Partidas Contables</Text>
-          {this.state.entry.children.map((childEntry, i) => {
+          { this.state.entry.children.map((childEntry, i) => {
             return (
               <AccountingEntry
                 key={i}
@@ -33,6 +44,16 @@ export default class AccountingEntryScreen extends React.Component {
               />
             );
           })}
+        </View>
+      );
+    }
+  }
+
+  renderAccountingSeats() {
+    const { navigate } = this.props.navigation;
+    if(this.state.entry.leaves.length > 0) {
+      return(
+        <View>
           <Text style={ header2() }>Asientos Contables</Text>
           {this.state.entry.leaves.map((seat, i) => {
             return (
@@ -44,7 +65,7 @@ export default class AccountingEntryScreen extends React.Component {
             );
           })}
         </View>
-      </ScrollView>
-    );
+      );
+    }
   }
 }
