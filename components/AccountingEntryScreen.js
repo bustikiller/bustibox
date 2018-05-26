@@ -3,6 +3,8 @@ import { Text, View, ScrollView, Button } from "react-native";
 import AccountingEntry from "../components/AccountingEntry.js";
 import AccountingSeat from "../components/AccountingSeat.js";
 
+import { header1, header2, basicScreen } from "../services/Styles";
+
 export default class AccountingEntryScreen extends React.Component {
   static navigationOptions = {
     title: "Partida contable"
@@ -16,13 +18,24 @@ export default class AccountingEntryScreen extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
-      <ScrollView style={{ padding: 30, flex: 1, backgroundColor: "#f6f6f6" }}>
+      <ScrollView style={ basicScreen() }>
         <View>
-          <Text>{this.state.entry.node.title} {this.state.entry.node.total}€</Text>
-          <Text>Partidas Contables</Text>
-          {this.state.entry.children.map((childEntry, i) => {
+          <Text style={ header1() }>{this.state.entry.node.title} {this.state.entry.node.total}€</Text>
+          { this.renderAccountingEntries() }
+          { this.renderAccountingSeats() }
+        </View>
+      </ScrollView>
+    );
+  }
+
+  renderAccountingEntries() {
+    const { navigate } = this.props.navigation;
+    if(this.state.entry.children.length > 0) {
+      return(
+        <View>
+          <Text style={ header2() }>Partidas Contables</Text>
+          { this.state.entry.children.map((childEntry, i) => {
             return (
               <AccountingEntry
                 key={i}
@@ -31,7 +44,17 @@ export default class AccountingEntryScreen extends React.Component {
               />
             );
           })}
-          <Text>Asientos Contables</Text>
+        </View>
+      );
+    }
+  }
+
+  renderAccountingSeats() {
+    const { navigate } = this.props.navigation;
+    if(this.state.entry.leaves.length > 0) {
+      return(
+        <View>
+          <Text style={ header2() }>Asientos Contables</Text>
           {this.state.entry.leaves.map((seat, i) => {
             return (
               <AccountingSeat
@@ -42,7 +65,7 @@ export default class AccountingEntryScreen extends React.Component {
             );
           })}
         </View>
-      </ScrollView>
-    );
+      );
+    }
   }
 }
