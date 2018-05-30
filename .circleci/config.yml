@@ -4,6 +4,7 @@ jobs:
     working_directory: ~/demo-react-native
     docker:
       - image: circleci/node:8
+    context: exp_deployment
     steps:
       - checkout
 
@@ -43,6 +44,20 @@ jobs:
 
       - store_artifacts:
           path: test-results
+
+      - run:
+          name: Install Exp CLI
+          branch: chore/automatic-expo-deployment
+          command: |
+            yarn global add exp
+            export PATH="$PATH:$( yarn global bin )"
+
+      - run:
+          name: Generate Android APK
+          branch: chore/automatic-expo-deployment
+          command: |
+            exp login -u $USERNAME -p $PASSWORD
+            exp build:android
 
 workflows:
   version: 2
